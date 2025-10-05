@@ -47,21 +47,44 @@ public class Show {
             System.out.println("Фамилия актера, которого необходимо заменить не должна быть пустой!");
             return false;
         }
-        Actor oldActor = null;
-        for (Actor actor : listOfActors) {
-            if (actor.getSurName().equals(surNameOldActor)) {
-                oldActor = actor;
-                break;
+        if (newActor == null){
+            System.out.println("Новый актер для добавления в список должен существовать!");
+            return false;
+        }
+
+        int countReplace = 0;
+
+        for (int i = 0; i < listOfActors.size(); i++) {
+            Actor actor = listOfActors.get(i);
+            if (surNameOldActor.equals(actor.getSurName())) {
+                System.out.println("Заменили актера: " + actor + " на актера: " + newActor);
+                listOfActors.set(i, newActor);
+                countReplace++;
             }
         }
-        if (oldActor == null) {
+        if (countReplace == 0) {
             System.out.println("Такого актера нет в списке");
             return false;
         }
-        listOfActors.remove(oldActor);
-        listOfActors.add(newActor);
-        System.out.println("Заменили актера: " + oldActor + " на актера: " + newActor);
+        System.out.println("Всего заменили " + countReplace + " актера(ов)!");
         return true;
+    }
+
+    public void printDirectorInfo() {
+        System.out.println("Имя режиссера: " + director.getName() + "\nФамилия режиссера: " + director.getSurName());
+    }
+
+    public void printActors() {
+        if (listOfActors.isEmpty()) {
+            System.out.println("Пока на данный спектакль не назначили ни одного актера");
+            return;
+        }
+        StringBuilder result = new StringBuilder("Список актеров:\n");
+        for (Actor actor : listOfActors) {
+            result.append("Имя актера: ").append(actor.getName()).append("\nФамилия актера: ")
+                    .append(actor.getSurName()).append("\nРост актера: ").append(actor.getHeight()).append("\n\n");
+        }
+        System.out.println(result);
     }
 
     @Override
@@ -105,21 +128,5 @@ public class Show {
 
     public void setListOfActors(ArrayList<Actor> listOfActors) {
         this.listOfActors = listOfActors;
-    }
-
-    public String printDirectorInfo() {
-        return "Имя режиссера: " + director.getName() + "\nФамилия режиссера: " + director.getSurName();
-    }
-
-    public String printActors() {
-        if (listOfActors.isEmpty()) {
-            return "Пока на данный спектакль не назначили ни одного актера";
-        }
-        String result = "Список актеров:\n";
-        for (Actor actor : listOfActors) {
-            result += "Имя актера: " + actor.getName() + "\nФамилия актера: " + actor.getSurName() + "\nРост актера: "
-                    + actor.getHeight() + "\n\n";
-        }
-        return result;
     }
 }

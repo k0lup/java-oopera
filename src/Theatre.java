@@ -40,15 +40,15 @@ public class Theatre {
                 new Director("Семен", "Семенов",
                         Gender.MALE, 1), actorsForBallet);
 
-        System.out.println(show.printActors());
-        System.out.println(opera.printActors());
-        System.out.println(ballet.printActors());
+        show.printActors();
+        opera.printActors();
+        ballet.printActors();
 
         show.replaceActor(actor2, "Васильев");
-        System.out.println(show.printActors());
+        show.printActors();
 
         show.replaceActor(actor2, "Васильев");
-        System.out.println(show.printActors());
+        show.printActors();
 
         System.out.println(opera.getLibrettoText());
         System.out.println(ballet.getLibrettoText());
