@@ -9,6 +9,10 @@ public class Actor extends Person {
         this.height = height;
     }
 
+    public double getHeight() {
+        return height;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

@@ -31,7 +31,7 @@ public class Show {
     }
 
     public boolean addNewActor(Actor actor) {
-        if (checkActor(actor)){
+        if (listOfActors.contains(actor)){
             System.out.println("Такой актер уже есть в списке актеров этого спектакля!");
             return false;
         }
@@ -40,13 +40,22 @@ public class Show {
         return true;
     }
 
-    public boolean checkActor(Actor actor) {
-        return listOfActors.contains(actor);
-    }
 
-    public boolean replaceActor(Actor oldActor, Actor newActor) {
-        if (!checkActor(oldActor)){
-            System.out.println("Актера: " + oldActor + " нет в списке актеров этого спектакля!");
+
+    public boolean replaceActor(Actor newActor, String surNameOldActor) {
+        if (surNameOldActor == null || surNameOldActor.isEmpty()){
+            System.out.println("Фамилия актера, которого необходимо заменить не должна быть пустой!");
+            return false;
+        }
+        Actor oldActor = null;
+        for (Actor actor : listOfActors){
+            if (actor.getSurName().equals(surNameOldActor)){
+                oldActor = actor;
+                break;
+            }
+        }
+        if (oldActor == null){
+            System.out.println("Такого актера нет в списке");
             return false;
         }
         listOfActors.remove(oldActor);
@@ -96,5 +105,21 @@ public class Show {
 
     public void setListOfActors(ArrayList<Actor> listOfActors) {
         this.listOfActors = listOfActors;
+    }
+
+    public String printDirectorInfo() {
+        return "Имя режиссера: " + director.getName() + "\nФамилия режиссера: " + director.getSurName();
+    }
+
+    public String printActors(){
+        if (listOfActors.isEmpty()){
+            return "Пока на данный спектакль не назначили ни одного актера";
+        }
+        String result = "Список актеров:\n";
+        for (Actor actor : listOfActors){
+            result += "Имя актера: " + actor.getName() + "\nФамилия актера: " + actor.getSurName() + "\nРост актера: "
+                    + actor.getHeight() + "\n\n";
+        }
+        return result;
     }
 }
