@@ -31,7 +31,7 @@ public class Show {
     }
 
     public boolean addNewActor(Actor actor) {
-        if (listOfActors.contains(actor)){
+        if (listOfActors.contains(actor)) {
             System.out.println("Такой актер уже есть в списке актеров этого спектакля!");
             return false;
         }
@@ -43,18 +43,18 @@ public class Show {
 
 
     public boolean replaceActor(Actor newActor, String surNameOldActor) {
-        if (surNameOldActor == null || surNameOldActor.isEmpty()){
+        if (surNameOldActor == null || surNameOldActor.isEmpty()) {
             System.out.println("Фамилия актера, которого необходимо заменить не должна быть пустой!");
             return false;
         }
         Actor oldActor = null;
-        for (Actor actor : listOfActors){
-            if (actor.getSurName().equals(surNameOldActor)){
+        for (Actor actor : listOfActors) {
+            if (actor.getSurName().equals(surNameOldActor)) {
                 oldActor = actor;
                 break;
             }
         }
-        if (oldActor == null){
+        if (oldActor == null) {
             System.out.println("Такого актера нет в списке");
             return false;
         }
@@ -111,12 +111,12 @@ public class Show {
         return "Имя режиссера: " + director.getName() + "\nФамилия режиссера: " + director.getSurName();
     }
 
-    public String printActors(){
-        if (listOfActors.isEmpty()){
+    public String printActors() {
+        if (listOfActors.isEmpty()) {
             return "Пока на данный спектакль не назначили ни одного актера";
         }
         String result = "Список актеров:\n";
-        for (Actor actor : listOfActors){
+        for (Actor actor : listOfActors) {
             result += "Имя актера: " + actor.getName() + "\nФамилия актера: " + actor.getSurName() + "\nРост актера: "
                     + actor.getHeight() + "\n\n";
         }
